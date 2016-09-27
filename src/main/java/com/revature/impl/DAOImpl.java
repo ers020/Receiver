@@ -9,6 +9,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 import com.revature.beans.Tracker;
+=======
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+>>>>>>> 4c01a90db91734c04b457a18f1f28af8b61ecf74
 import com.revature.data.DAO;
 
 public class DAOImpl implements DAO{
@@ -23,10 +28,10 @@ public class DAOImpl implements DAO{
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
-	public void setSession(Session session) {
+	public Session setSession(Session session){
+		
 		this.session = session;
 	}
-	
 	public Session getSession() {
 		
 		if(session == null){
