@@ -14,8 +14,64 @@
 	</bean>
 	
 	<bean name="dao" class="com.revature.impl.DAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sf" ref="sessionFactory"></property>
 	</bean>
+	
+	<!-- JMS Spring configuration -->
+	<!-- JNDI Template -->
+	<bean name="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+		<property name="environment">
+			<props>
+				<prop key="java.naming.factory.initial">
+					weblogic.jndi.WLInitialContextFactory</prop>
+				<prop key="java.naming.provider.url">t3://localhost:7001</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- JndiObjectBeanFactory -->
+	<bean name="queueConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiTemplate" ref="jndiTemplate"></property>
+		<property name="jndiName">
+			<value>CF1</value>
+		</property>
+	</bean>
+	
+	<!-- DestinationResolver -->
+	<bean name="jmsDestinationResolver" class="org.springframework.jms.support.destination.JndiDestinationResolver">
+		<property name="jndiTemplate" ref="jndiTemplate"></property>
+		<property name="cache">
+			<value>true</value>
+		</property>
+	</bean>
+	
+	<!-- JMSTemplate -->
+	<bean name="invoiceQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="queueConnectionFactory"></property>
+		<property name="destinationResolver" ref="jmsDestinationResolver"></property>
+	</bean>
+	
+	<!-- Queue -->
+	<bean name="invoiceQueue" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiTemplate" ref="jndiTemplate"></property>
+		<property name="jndiName">
+			<value>Q1</value>
+		</property>
+	</bean>
+	
+	<!-- MDB MessageDrivenBean, not sure if we need this or not! -->
+	<bean name="invoiceListener" class="com.revature.invoice.InvoiceMDB"/>
+	<!-- The line screams at me. It is a no go for now. -->
+	
+	<!-- Invoice listener -->
+	<bean name="Invoicelistener" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="concurrentConsumers" value="5"></property>
+		<property name="connectionFactory" ref="queueConnectionFactory"></property>
+		<property name="destination" ref="invoiceQueue"></property>
+		<property name="messageListener" ref="invoiceListener"></property>
+	</bean>
+	
+	<!-- end configuration -->
 	
 	<bean name="dataSource" 
 		class="org.apache.commons.dbcp.BasicDataSource">
