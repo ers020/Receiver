@@ -14,7 +14,7 @@
 	</bean>
 	
 	<bean name="dao" class="com.revature.impl.DAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sf" ref="sessionFactory"></property>
 	</bean>
 	
 	<!-- JMS Spring configuration -->
