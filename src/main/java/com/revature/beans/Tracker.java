@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ACTION TRACKER")
+@Table(name="ACTION_TRACKER")
 public class Tracker {
 
 	/*
