@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Tracker;
 import com.revature.data.DAO;
@@ -44,11 +46,12 @@ public class DAOImpl implements DAO{
 	/*
 	 *  Database Altering
 	 */
-	
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void insertRecord(Object obj) {
 		
 		Session ses = sf.getCurrentSession();
-		ses.save(obj);
+		setSession(ses);
+		session.save(obj);
 	}
 	public void insertRecord(Object[] obj) {
 		
