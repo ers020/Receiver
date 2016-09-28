@@ -3,10 +3,13 @@ package com.revature.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.revature.beans.Tracker;
 import com.revature.data.BusinessDelegate;
 import com.revature.data.DataService;
 
+@Service
 public class BusinessDelegateImpl implements BusinessDelegate {
 	
 	/*
