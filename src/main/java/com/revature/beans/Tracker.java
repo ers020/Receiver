@@ -78,7 +78,7 @@ public class Tracker {
 		this.time = new Date();
 	}
 	
-	public Tracker(String email, Date time, String description) {
+	public Tracker(String email, String description) {
 		this();
 		this.email = email;
 		this.description = description;
