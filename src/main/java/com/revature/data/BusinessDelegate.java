@@ -3,8 +3,11 @@ package com.revature.data;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.revature.beans.Tracker;
 
+@Service
 public interface BusinessDelegate {
 
 	/*

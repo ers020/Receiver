@@ -53,27 +53,33 @@ public class DAOImpl implements DAO{
 		setSession(ses);
 		session.save(obj);
 	}
+	
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void insertRecord(Object[] obj) {
 		
 		Session ses = sf.getCurrentSession();
-		
+		setSession(ses);
 		for(Object o : obj){
 			
-			ses.save(o);
+			session.save(o);
 		}
 	}
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void deleteRecord(Object obj) {
 		
 		Session ses = sf.getCurrentSession();
-		ses.delete(obj);
+		setSession(ses);
+		session.delete(obj);
 	}
+	
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void deleteRecord(Object[] obj) {
 		
 		Session ses = sf.getCurrentSession();
-		
+		setSession(ses);
 		for(Object o : obj){
 			
-			ses.delete(o);
+			session.delete(o);
 		}
 	}
 	
@@ -81,34 +87,46 @@ public class DAOImpl implements DAO{
 	 *  Database Retreival
 	 */
 	
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public Tracker getRecord(long id) {
 		
 		Session ses = sf.getCurrentSession();
-		Criteria crit = ses.createCriteria(Tracker.class).add(Restrictions.eq("id", id));
+		setSession(ses);
+		Criteria crit = session.createCriteria(Tracker.class).add(Restrictions.eq("id", id));
 		
 		return (Tracker) crit.uniqueResult();
 	}
+	
+	
 	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public List<Tracker> getRecord(String email) {
 		
 		Session ses = sf.getCurrentSession();
-		Criteria crit = ses.createCriteria(Tracker.class).add(Restrictions.eq("email", email));
+		setSession(ses);
+		Criteria crit = session.createCriteria(Tracker.class).add(Restrictions.eq("email", email));
 		
 		return crit.list();
 	}
+	
 	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public List<Tracker> getRecord(Date date) {
 		
 		Session ses = sf.getCurrentSession();
-		Criteria crit = ses.createCriteria(Tracker.class).add(Restrictions.eq("time", date));
+		setSession(ses);
+		Criteria crit = session.createCriteria(Tracker.class).add(Restrictions.eq("time", date));
 		
 		return crit.list();
 	}
+	
 	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public List<Tracker> getRecord() {
 		
 		Session ses = sf.getCurrentSession();
-		Criteria crit = ses.createCriteria(Tracker.class);
+		setSession(ses);
+		Criteria crit = session.createCriteria(Tracker.class);
 		
 		return crit.list();
 	}
