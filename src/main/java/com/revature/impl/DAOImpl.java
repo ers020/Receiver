@@ -7,11 +7,12 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import com.revature.beans.Tracker;
-
 import com.revature.data.DAO;
 
+@Repository
 public class DAOImpl implements DAO{
 
 	/*
@@ -23,7 +24,9 @@ public class DAOImpl implements DAO{
 	
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
+		session = getSession();
 	}
+	
 	public void setSession(Session session){
 		
 		this.session = session;
