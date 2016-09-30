@@ -9,8 +9,13 @@ audits.controller("AuditCtrl", ["$scope", "$http", function($scope, $http){
 				$scope.audits = resp;
 				$("#loading").hide();
 				
-				
 			}
-	);
+
+	)
+	
+	$scope.sort = function(keyname){
+		$scope.sortKey = keyname;
+		$scope.reverse = !$scope.reverse;
+	}
 }]);
 
