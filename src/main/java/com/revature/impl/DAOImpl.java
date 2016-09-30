@@ -127,7 +127,6 @@ public class DAOImpl implements DAO{
 		Session ses = sf.getCurrentSession();
 		setSession(ses);
 		Criteria crit = session.createCriteria(Tracker.class);
-		
 		return crit.list();
 	}
 }
