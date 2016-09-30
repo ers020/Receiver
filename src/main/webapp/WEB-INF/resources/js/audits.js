@@ -3,4 +3,4 @@
  * connected to main.html 
  */
 
-var audits = angular.module("audits", []);
+var audits = angular.module("audits", ["angularUtils.directives.dirPagination"]);
