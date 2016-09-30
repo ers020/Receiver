@@ -8,3 +8,20 @@ img
 	{
 		display: block; margin: auto;
 	}
+
+table 
+	{
+		width: 75%;
+	}
+	
+div.text
+	{
+		text-align: center;
+	}
+	
+div.tableClass
+	{
+		width: 75%;
+		text-align: center;
+		margin: 0 auto;
+	}
