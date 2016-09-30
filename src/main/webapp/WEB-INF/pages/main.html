@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="audits">
+<head>
+<script src="../resources/js/angular.js"></script>
+<script src="../resources/js/audits.js"></script>
+<script src="../resources/js/controllers/AuditCtrl.js"></script>
+<script src="../resources/js/jquery-3.1.1.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+<link href="../resources/css/bootstrap.css" rel="stylesheet" />
+<link href="../resources/css/bootstrap-theme.css" rel="stylesheet" />
+<title>Revature Blog Audit Tracking</title>
+</head>
+<body ng-controller="AuditCtrl">
+	<br />
+	<br />
+	<br />
+	<div class ="panel">
+		<img id="loading" src="../resources/images/loading.gif" alt="Loading Gif"/>
+	</div>
+	<br />
+	<br />
+	<div class="panel">
+	<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>
+				Audit Number
+			</th>
+			<th>
+				User
+			</th>
+			<th>
+				Action
+			</th>
+			<th>
+				Time
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="info in audits | orderBy: 'id' ">
+			<td>{{info.id}}</td>
+			<td>{{info.email}}</td>
+			<td>{{info.description}}</td>
+			<td>{{info.time | date : "medium" : timezone}}</td>
+		</tr>
+	</tbody>
+	</table>
+	<br />
+	<br />
+	</div>
+	<br />
+
+	
+</body>
+</html>
