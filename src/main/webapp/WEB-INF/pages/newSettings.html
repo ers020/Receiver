@@ -3,30 +3,51 @@
 <head>
 <script src="../resources/js/angular.js"></script>
 <script src="../resources/js/theAudits.js"></script>
-<script src="../resources/js/controllers/newCtrl.js"></script>
+<script src="../resources/js/controllers/NewCtrl.js"></script>
+<script src="../resources/js/controllers/userListController.js"></script>
 <script src="../resources/js/filters/userFilter.js"></script>
 <script src="../resources/js/jquery-3.1.1.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700" rel="stylesheet">
 <link href="../resources/css/bootstrap.css" rel="stylesheet" />
 <link href="../resources/css/bootstrap-theme.css" rel="stylesheet" />
 <link href="../resources/css/main.css" rel="stylesheet" />
-<title>Revature Blog Audit Trackers</title>
+<title>Revature Blog Audit Tracker</title>
 </head>
-<body ng-controller="NewCtrl">
-	<div class="panel panel-default row">
+<body ng-controller="NewCtrlAudit">
+	<div class="navbar navbar-inverse">
+		<a class="navbar-brand" href="#">Revature Blog Audit Tracker</a>
+	</div>
+	<div class="panel panel-default row" ng-controller="userListCtrl">
 		<div class="col-xs-3">
-			User goes here
+			<a ng-click="selectUser()"
+				class="btn btn-block btn-default btn-lg">Home</a>
+			<a ng-repeat="info in theAudits | orderBy:'email' | unique:'email'"
+				ng-click="selectUser(info)" class="btn btn-block btn-default btn-lg"
+				ng-class="getUserClass(info)">
+				
+				{{info}}
+			</a>
 		</div>
 		<div class="col-xs-8">
-			<div class="well" ng-repeat="info in theAudits">
-				<h3>
-					<strong>{{info.email}}</strong>
-					<span class="pull-right label label-primary">
-						{{info.description}}, {{info.time | date: "medium"}} 
+			<div class="well ng-scope" 
+			ng-repeat="info in theAudits | filter:userFilterFn | range:selectedPage:pageSize">
+				<h5>
+					<strong class="ng-binding">{{info.description}}</strong>
+					<span class="pull-right label label-primary ng-binding">
+						{{info.time | date:"medium"}}
 					</span>
-				</h3>
+				</h5>
+			</div>
+			<div class="pull-right btn-group">
+				<a ng-repeat=
+					"page in theAudits | filter:userFilterFn | pageCount:pageSize"
+					ng-click="selectPage($index + 1)" class="btn btn-default"
+					ng-class="getPageClass($index + 1)">
+						{{$index + 1}}
+					</a>
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>
