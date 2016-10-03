@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="theAudits">
+<head>
+<script src="../resources/js/angular.js"></script>
+<script src="../resources/js/theAudits.js"></script>
+<script src="../resources/js/controllers/newCtrl.js"></script>
+<script src="../resources/js/filters/userFilter.js"></script>
+<script src="../resources/js/jquery-3.1.1.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700" rel="stylesheet">
+<link href="../resources/css/bootstrap.css" rel="stylesheet" />
+<link href="../resources/css/bootstrap-theme.css" rel="stylesheet" />
+<link href="../resources/css/main.css" rel="stylesheet" />
+<title>Revature Blog Audit Trackers</title>
+</head>
+<body ng-controller="NewCtrl">
+	<div class="panel panel-default row">
+		<div class="col-xs-3">
+			User goes here
+		</div>
+		<div class="col-xs-8">
+			<div class="well" ng-repeat="info in theAudits">
+				<h3>
+					<strong>{{info.email}}</strong>
+					<span class="pull-right label label-primary">
+						{{info.description}}, {{info.time | date: "medium"}} 
+					</span>
+				</h3>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
