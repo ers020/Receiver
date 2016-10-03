@@ -36,21 +36,21 @@
 	<thead>
 		<tr>
 			<th class="headers" ng-click="sort('id')">
-				Audit Number <span class="glyphicon glyphicon-sort:before" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+				<a ng-click>Audit Number</a> <span class="glyphicon glyphicon-sort:before" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
 			</th>
 			<th class="headers" ng-click="sort('email')">
-				User <span class="glyphicon glyphicon-sort:before" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+				<a ng-click>User</a> <span class="glyphicon glyphicon-sort:before" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
 			</th>
 			<th class="headers" ng-click="sort('description')">
-				Action <span class="glyphicon glyphicon-sort:before" ng-show="sortKey=='description'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+				<a ng-click>Action</a> <span class="glyphicon glyphicon-sort:before" ng-show="sortKey=='description'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
 			</th>
 			<th class="headers" ng-click="sort('time')">
-				Time <span class="glyphicon glyphicon-sort:before" ng-show="sortKey=='time'" ng-class="{'glyphicon glyphicon-chevron-up':reverse,'glyphicon glyphicon-chevron-down':!reverse}"></span>
+				<a ng-click>Time</a> <span class="glyphicon glyphicon-sort:before" ng-show="sortKey=='time'" ng-class="{'glyphicon glyphicon-chevron-up':reverse,'glyphicon glyphicon-chevron-down':!reverse}"></span>
 			</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr dir-paginate="info in audits | filter:search | orderBy:sortKey:reverse | itemsPerPage: 5">
+		<tr dir-paginate="info in audits | filter:search | orderBy:sortKey:reverse | itemsPerPage: 10">
 			<td>{{info.id}}</td>
 			<td>{{info.email}}</td>
 			<td class="desc">{{info.description}}</td>
@@ -60,7 +60,7 @@
 	</table>
 	<br />
 	<br />
-	<dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+	<dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
 	</div>
 	<br />
 	<br />
