@@ -49,4 +49,11 @@ private BusinessDelegate businessDelegate;
 		return "redirect:/pages/main.html";
 	}
 	
+	//newSettings
+	@RequestMapping(value="/newSettings", method=RequestMethod.GET)
+	public String newSettingsPage(HttpServletRequest req){
+		
+		return "redirect:/pages/newSettings.html";
+	}
+	
 }
